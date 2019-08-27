@@ -33,7 +33,6 @@ function Cart() {
               wishlist[wishlist.length - 1].id = posID;
               console.log(wishlist);
             }, responseTime(5000));  
-        
             return wishlist
           };
       setWishlist(result);
