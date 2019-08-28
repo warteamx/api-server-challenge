@@ -1,15 +1,25 @@
-import { createStore } from "redux";
+import {
+  createStore
+} from "redux";
 import reducer from "../reducers";
 
-const initialState = [
-    {
+const initialState = {
+  wishlists: {
+    1: {
       id: 1,
       name: 'wedding',
-      products: []
-    }, {
+      products: [],
+    },
+    2: {
       id: 2,
       name: 'birthday',
-      products: []
+      products: [],
     }
-  ]
+
+  },
+  users: {
+    type: 'anonymous',
+    ga: 'xxxluzt-000'
+  }
+}
 export const store = createStore(reducer, initialState);
