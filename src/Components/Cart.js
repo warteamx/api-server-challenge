@@ -2,10 +2,8 @@ import React, {useState, useEffect} from 'react';
 
 function Cart() {
 
-  const [value,
-    setValue] = useState('');
-  const [wishlist,
-    setWishlist] = useState([
+  const [value,    setValue] = useState('');
+  const [wishlist,   setWishlist] = useState([
     {
       id: 1,
       name: 'wedding',
@@ -16,6 +14,9 @@ function Cart() {
       products: []
     }
   ]);
+  // const [edit, setEdit] = useState([{index:0, editName:""}]);
+  const [edit, setEdit] = useState([]);
+  const [patchName, setPatchName] = useState("");
 
   useEffect( ()=> {
     const fetchData = async () => {
@@ -38,6 +39,8 @@ function Cart() {
       setWishlist(result);
     }
     fetchData();
+        let array = new Array(wishlist.length);
+    setEdit(array);
   
   }, [wishlist]);
 
@@ -58,39 +61,68 @@ function Cart() {
     // wishlist.concat(newWish)
   }
 
-  const handleEdit = (evt) => {
-    evt.preventDefault();
-    console.log(evt.target.value)
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    function patchrequest() {
+      let index= e.target.id -1;   // Index of wishlist to  patchRequest
+      let errorOfSeverAPIChanllenge = index < 0 ? "error id negative" : "Patch Request Successfull";
+      console.log(errorOfSeverAPIChanllenge);
+      console.log(patchName);
+      setValue(wishlist[index].name = patchName);
+  }
+
+  try {
+    patchrequest();
+  }
+  catch(err) {
+  console.log(err)
+  }
+
+  }
+ 
+
+  const editList = (e) => {
+    let index = e.target.dataset.index
+    let newValue = {index:index, name: e.target.value}
+    console.log(newValue);
+    // let array = new Array(wishlist.length);
+    // setEdit(array);
+    setPatchName(newValue.name);
+// console.log(e.target.dataset.index)
+
+
   }
 
   return (
     <div>
       <h1>
-        Cart
+        Problem Cart
       </h1>
+      <p> This cart uses an asycronous postRequest with random Time response. 
+        That makes that consecutive and quick postRequest will gave us nonconsecutive index  </p>
+
       <form >
         <input type="text" value={value} onChange={e => setValue(e.target.value)}></input>
         <button type='submit' onClick={handleSubmit}>Add wish</button>
       </form>
-
-
-
+      <h2>Wishlist object State</h2>
+      {JSON.stringify(wishlist)}
       <h2>
         LISTS UI STATE
       </h2>
-      {wishlist.map((value) => <div key={value.id}>
+      { wishlist.map((value, i) => <div key={value.id}>
         <form>
           <label htmlFor={value.name}>
             ID: {value.id} --> 
            </label>
-          <input  type="text" value={value.name} name={value.name} onChange={evt => setValue(evt.target.value)}/>
-          <button onSubmit={handleEdit}>
-            <span role="img" aria-label='edit'>
-              🖊️
-            </span>
-          </button>
+           <label> {value.name} --> </label>
+          {/* <input  type="text" value={value.name} name={value.name} data-name={edit} onChange={e => setEdit(e.target.value)}/> */}
+          <input  type="text"  data-index={i} value={edit.index}  onChange={(e)=> editList(e)} ></input>
+          <input type="submit" id={value.id}  value="🖊️" data-name={edit.name} onClick={ e => handleEdit(e)} /> 
         </form>
-      </div>)}
+      </div>
+      )}
     </div>
   );
 }
