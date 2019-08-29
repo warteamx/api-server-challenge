@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Cart() {
 
-  const [value,    setValue] = useState('');
-  const [wishlist,   setWishlist] = useState([
+  const [value, setValue] = useState('');
+  const [wishlist, setWishlist] = useState([
     {
       id: 1,
       name: 'wedding',
@@ -18,30 +18,30 @@ function Cart() {
   const [edit, setEdit] = useState([]);
   const [patchName, setPatchName] = useState("");
 
-  useEffect( ()=> {
+  useEffect(() => {
     const fetchData = async () => {
       const result = await function postRequest(data) {
         // SIMULATE RANDOM RESPONSE TIME FROM SERVER
-            function responseTime(max) {
-              return Math.floor(Math.random() * Math.floor(max));
-            }
-            //UPDATE THE ID OF THE WISHLIST ITEM WITH LATENCY TO SIMULATE A SERVER CALL TO
-            setTimeout(() => {
-              let newID = data[data.length - 1].id;
-              let posID = newID > 1
-                ? newID
-                : data[data.length - 2].id + 1;
-              wishlist[wishlist.length - 1].id = posID;
-              console.log(wishlist);
-            }, responseTime(5000));  
-            return wishlist
-          };
+        function responseTime(max) {
+          return Math.floor(Math.random() * Math.floor(max));
+        }
+        //UPDATE THE ID OF THE WISHLIST ITEM WITH LATENCY TO SIMULATE A SERVER CALL TO
+        setTimeout(() => {
+          let newID = data[data.length - 1].id;
+          let posID = newID > 1
+            ? newID
+            : data[data.length - 2].id + 1;
+          wishlist[wishlist.length - 1].id = posID;
+          console.log(wishlist);
+        }, responseTime(5000));
+        return wishlist
+      };
       setWishlist(result);
     }
     fetchData();
-        let array = new Array(wishlist.length);
+    let array = new Array(wishlist.length);
     setEdit(array);
-  
+
   }, [wishlist]);
 
 
@@ -65,31 +65,31 @@ function Cart() {
   const handleEdit = (e) => {
     e.preventDefault();
     function patchrequest() {
-      let index= e.target.id -1;   // Index of wishlist to  patchRequest
+      let index = e.target.id - 1;   // Index of wishlist to  patchRequest
       let errorOfSeverAPIChanllenge = index < 0 ? "error id negative" : "Patch Request Successfull";
       console.log(errorOfSeverAPIChanllenge);
       console.log(patchName);
       setValue(wishlist[index].name = patchName);
+    }
+
+    try {
+      patchrequest();
+    }
+    catch (err) {
+      console.log(err)
+    }
+
   }
 
-  try {
-    patchrequest();
-  }
-  catch(err) {
-  console.log(err)
-  }
-
-  }
- 
 
   const editList = (e) => {
     let index = e.target.dataset.index
-    let newValue = {index:index, name: e.target.value}
+    let newValue = { index: index, name: e.target.value }
     console.log(newValue);
     // let array = new Array(wishlist.length);
     // setEdit(array);
     setPatchName(newValue.name);
-// console.log(e.target.dataset.index)
+    // console.log(e.target.dataset.index)
 
 
   }
@@ -99,7 +99,7 @@ function Cart() {
       <h1>
         Problem Cart
       </h1>
-      <p> This cart uses an asycronous postRequest with random Time response. 
+      <p> This cart uses an asycronous postRequest with random Time response.
         That makes that consecutive and quick postRequest will gave us nonconsecutive index  </p>
 
       <form >
@@ -111,15 +111,15 @@ function Cart() {
       <h2>
         LISTS UI STATE
       </h2>
-      { wishlist.map((value, i) => <div key={value.id}>
+      {wishlist.map((value, i) => <div key={value.id}>
         <form>
           <label htmlFor={value.name}>
-            ID: {value.id} --> 
+            ID: {value.id} -->
            </label>
-           <label> {value.name} --> </label>
+          <label> {value.name} --> </label>
           {/* <input  type="text" value={value.name} name={value.name} data-name={edit} onChange={e => setEdit(e.target.value)}/> */}
-          <input  type="text"  data-index={i} value={edit.index}  onChange={(e)=> editList(e)} ></input>
-          <input type="submit" id={value.id}  value="🖊️" data-name={edit.name} onClick={ e => handleEdit(e)} /> 
+          <input type="text" data-index={i} value={edit.index} onChange={(e) => editList(e)} ></input>
+          <input type="submit" id={value.id} value="🖊️" data-name={edit.name} onClick={e => handleEdit(e)} />
         </form>
       </div>
       )}

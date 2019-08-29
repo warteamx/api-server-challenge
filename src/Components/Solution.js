@@ -1,24 +1,33 @@
-import React from 'react'
-import {store} from '../store'
-import {setTechnology} from '../actions'
+import React , {useState} from 'react'
+import { store } from '../store'
+import { postWish } from '../actions'
 
 
 export default function Solution() {
 
-    function dispatchBtnAction(e) {
-        const tech = e.target.dataset.tech;
-        store.dispatch(setTechnology(tech));
-      }
+    const [value, setValue] = useState('');
 
-      let state = JSON.stringify(store.getState())
+    function dispatchPostWishList(e) {
+        store.dispatch(postWish(value));
+    }
 
-    return(
+    // function dispatchPatchWish(e) {
+    //     const tech = e.target.dataset.tech;
+    //     store.dispatch(patchWish(tech));
+    // }
+
+    let state = JSON.stringify(store.getState())
+
+    return (
         <div>
             <h1>Solution Cart </h1>
-            <button data-tech="wishlist" onClick={dispatchBtnAction}> wishlist </button>
-            <button data-tech="store" onClick={dispatchBtnAction}> Store </button>
+            <input type="text" value={value} onChange={e => setValue(e.target.value)}></input>
+            <button  onClick={dispatchPostWishList}> Post Wishlist </button>
+           
             <h2> Store State </h2>
             <p> {state} </p>
+
+            {/* <button data-tech="store" onClick={dispatchPatchWish}> Store </button> */}
 
         </div>
     )

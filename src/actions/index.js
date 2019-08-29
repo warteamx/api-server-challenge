@@ -1,1 +1,1 @@
-export const setTechnology = text => ({ type: "SET_TECHNOLOGY", text });
+export const postWish = text => ({ type: "POST_WISH", text });
