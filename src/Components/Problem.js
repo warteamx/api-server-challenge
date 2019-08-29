@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Cart() {
+function Problem() {
 
   const [value, setValue] = useState('');
   const [wishlist, setWishlist] = useState([
@@ -90,8 +90,6 @@ function Cart() {
     // setEdit(array);
     setPatchName(newValue.name);
     // console.log(e.target.dataset.index)
-
-
   }
 
   return (
@@ -118,8 +116,8 @@ function Cart() {
            </label>
           <label> {value.name} --> </label>
           {/* <input  type="text" value={value.name} name={value.name} data-name={edit} onChange={e => setEdit(e.target.value)}/> */}
-          <input type="text" data-index={i} value={edit.index} onChange={(e) => editList(e)} ></input>
-          <input type="submit" id={value.id} value="🖊️" data-name={edit.name} onClick={e => handleEdit(e)} />
+          <input type="text" data-index={i} value={edit.index} onChange={(e) => editList(e)} />
+          <button type="submit" id={value.id} data-name={edit.name} onClick={e => handleEdit(e)} >  <span role="img" aria-label="edit pen"> 🖊️ </span> </button>
         </form>
       </div>
       )}
@@ -127,4 +125,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Problem;

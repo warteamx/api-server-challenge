@@ -1,68 +1,39 @@
+## Problem
+
+In a naive approach, when a new wishlist is created and sent to a server via a POST request and
+the user quickly changes the name of that new list. It might cause another POST request, when it
+actually should be a PATCH request in case the first one was successful.
+
+``` javascript
+
+// initial state
+const wishlists = [];
+// user creates a new cart (POST request)
+const wishlists = [{ id: -1, name: '', products: [] }];
+// user quickly updates the name (POST request)
+// since the first response did not come back and the ID is still negative
+const wishlists = [{ id: -1, name: 'wedding', products: [] }];
+// after both requests have finished, we might end up with two persons,
+// depending on the implementation
+const wishlists = [
+{ id: 1, name: '', products: [] },
+{ id: 2, name: 'wedding', products: [] },
+];
+
+```
+
+## Solution 
+
+Inside the src > Components Folder , there are two copmonents. 
+
+1) For State Management we can use Redux
+
+
+
+## Dependencies 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Added [Redux Library](https://redux.js.org/)
+Added [lodash](https://lodash.com/)
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

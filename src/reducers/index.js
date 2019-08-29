@@ -3,13 +3,14 @@ export default (state, action) => {
       case "POST_WISH":
         return {
             ...state, 
-            tech: action.text
+            id: action.text,
+            name: action.text
         }
 
         case "PATCH_WISHLIST":
           return {
               ...state, 
-              tech: action.text
+              id: action.text
           }
   
       default:
