@@ -17,10 +17,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
 
 .App-link {
   color: #61dafb;
+  font-size: calc(5px + 2vmin);
+  padding-bottom: 5px;
 }
 
 
@@ -30,6 +33,13 @@
 
 .column {
   flex: 50%;
+  border: 5px solid grey;
+  padding: 10px;
+}
+
+.incomplete {
+  color: red;
+  font-size: calc(1px + 2vmin);
 }
 
 @keyframes App-logo-spin {

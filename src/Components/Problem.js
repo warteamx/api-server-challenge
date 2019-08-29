@@ -97,17 +97,16 @@ function Problem() {
       <h1>
         Problem Cart
       </h1>
-      <p> This cart uses an asycronous postRequest with random Time response.
-        That makes that consecutive and quick postRequest will gave us nonconsecutive index  </p>
+      <p> Add a wishlist to the Component Store </p>
 
       <form >
         <input type="text" value={value} onChange={e => setValue(e.target.value)}></input>
         <button type='submit' onClick={handleSubmit}>Add wish</button>
       </form>
-      <h2>Wishlist object State</h2>
+      <h2>Wishlist Store State</h2>
       {JSON.stringify(wishlist)}
       <h2>
-        LISTS UI STATE
+        Wishlist
       </h2>
       {wishlist.map((value, i) => <div key={value.id}>
         <form>

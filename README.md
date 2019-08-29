@@ -24,7 +24,24 @@ const wishlists = [
 
 ## Solution 
 
-Inside the src > Components Folder , there are two copmonents. 
+Inside the src > Components Folder , there are two components. 
+
+UI
+- Input field with button to create a post request to add a wish to the wislist
+- Wishlist Store: A list of the wishes ready to be modified by a patch request. 
+
+Problem.js
+- This component uses "useState and useEffect" Hooks to manage the state
+- If the user add wishes or modify the wishes too fast it creates errors on the id of the wishlist. 
+
+Solution.js
+- This component uses Redux to manage the state
+
+# TODOS: 
+- Both Components: Refactor the names of the fuctions and variables
+- Both Components: Create a Simulated Server to persist data that can be used by both components (Problem + Solution)
+- Solution: Use Redux Thunk to create conditional dispatches to the Store
+- Solution: Finish the Actions for dispatch Post-Wish and Patch-Wish
 
 1) For State Management we can use Redux
 
