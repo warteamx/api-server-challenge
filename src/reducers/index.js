@@ -1,14 +1,17 @@
-let initialState = [{
-  "id": 1,
-  "name": "wedding",
-  "products": []
-},
-{
-  "id": 2,
-  "name": "birthday",
-  "products": []
-}
-]
+const initialState = {
+  wishlist: [{
+    "id": 1,
+    "name": "wedding",
+    "products": []
+  },
+  {
+    "id": 2,
+    "name": "birthday",
+    "products": []
+  }
+  ]
+};
+
 
 export default (state= initialState , action) => {
     switch (action.type) {
@@ -26,9 +29,8 @@ export default (state= initialState , action) => {
       case "POST_WISH":
         return {
             ...state, 
-            id: -1,
-            name: action.payload
-        }
+            wishlist: state.wishlist.concat(action.payload)
+        };
 
         case "PATCH_WISHLIST":
           return {
