@@ -1,39 +1,11 @@
-import {
-  createStore
-} from "redux";
+import { createStore , applyMiddleware, compose} from "redux";
 import reducer from "../reducers";
 
-// const initialState = {
-//   wishlists: {
-//     1: {
-//       id: 1,
-//       name: 'wedding',
-//       products: [],
-//     },
-//     2: {
-//       id: 2,
-//       name: 'birthday',
-//       products: [],
-//     }
 
-//   },
-//   users: {
-//     type: 'anonymous',
-//     ga: 'xxxluzt-000'
-//   }
-// }
+// let initialState = server.getWishlist((wish)=> wish);
 
-const initialState = {
-    1: {
-      id: 1,
-      name: 'wedding',
-      products: [],
-    },
-    2: {
-      id: 2,
-      name: 'birthday',
-      products: [],
-    }
-  }
 
-export const store = createStore(reducer, initialState);
+// const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export const store = createStore(
+    reducer);

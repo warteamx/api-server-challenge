@@ -1,3 +1,5 @@
+export const GET_ALLWISHES = "GET_ALLWISHES"
+export const RECEIVE_WISHLIST = "RECEIVE_WISHLIST"
 export const POST_WISH = "POST_WISH"
 export const PATCH_WISH = 'PATCH_WISH'
 

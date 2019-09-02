@@ -1,11 +1,19 @@
 import React , {useState} from 'react'
 import { store } from '../store'
-import { postWish, patchWish } from '../actions'
+import { postWish, patchWish, getAllWishes, receiveWishes } from '../actions'
 import _ from 'lodash'
+import { connect } from "react-redux";
+import server from '../api/server';
 
-export default function Solution() {
+
+const mapStateToProps = state => {
+    return { state };
+  };
+
+ function Wishlist(state) {
     const [value, setValue] = useState('');
-    const [edit, setEdit] = useState({index: "", name:""});
+    const [edit, setEdit] = useState({id:"" , name:""});
+
 
     function dispatchPostWishList(e) {
         store.dispatch(postWish(value));
@@ -14,19 +22,23 @@ export default function Solution() {
     function dispatchPatchWish(e) {
         store.dispatch(patchWish(edit));
     }
-    let wishlist = store.getState()
-
+   
+    // let wishlist = store.getState()
     const editList = (e) => {
-        let index = e.target.dataset.index
-        let newValue = { index: index, name: e.target.value }
+        
+        let newValue = {name: e.target.value }
         console.log(newValue);
 
-        let array = new Array(wishlist.length);
+        let array = new Array(state.length);
         setEdit(array);
         console.log(edit)
       }
 
-      let storeState = JSON.stringify(store.getState());
+
+      let WishlistStoreState = JSON.stringify(store.getState())
+    //   store.subscribe(() => console.log('Look ma, Redux!!'))
+
+console.log(state);
 
     return (
         <div>
@@ -37,10 +49,10 @@ export default function Solution() {
             <input type="text" value={value} onChange={e => setValue(e.target.value)}></input>
             <button  onClick={dispatchPostWishList}> Add Wishlist </button>
             <h2>Wishlist Store State</h2>
-            <p>{storeState}</p>
+            <p>{WishlistStoreState}</p>
 
             <h2> Wishlist </h2>
-            {_.values(wishlist).map((data, i)=>{
+            {_.values(state).map((data, i)=>{
                  return(
                       <form key={i}> ID: {data.id} --> {data.name}
                       <input type="text" placeholder={data.name} value={edit.name} data-index={data.id} onChange={(e) => editList(e)} />
@@ -51,3 +63,7 @@ export default function Solution() {
         </div>
     )
 }
+
+const Solution = connect(mapStateToProps)(Wishlist);
+
+export default Solution;
