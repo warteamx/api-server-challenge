@@ -16,15 +16,16 @@ const initialState = {
 export default (state= initialState , action) => {
     switch (action.type) {
 
-      case "GET_WISHLIST":
-        return {
-            ...state, 
-        }
+      // case "GET_WISHLIST":
+      //   return {
+      //       ...state, 
+      //   }
 
-        case "RECEIVE_WISHLIST":
-          return {
-              ...state, 
-          }
+      //   case "RECEIVE_WISHLIST":
+      //     return {
+      //         ...state, 
+      //         wishlist: state.wishlist
+      //     }
 
       case "POST_WISH":
         return {
@@ -32,11 +33,11 @@ export default (state= initialState , action) => {
             wishlist: state.wishlist.concat(action.payload)
         };
 
-        case "PATCH_WISHLIST":
-          return {
-              ...state, 
-              id: action.payload
-          }
+        // case "PATCH_WISHLIST":
+        //   return {
+        //       ...state, 
+        //       id: action.payload
+        //   }
   
       default:
         return state;

@@ -2,22 +2,21 @@ import * as types from '../constants/ActionTypes'
 import server from '../api/server'
 
 
-export const postWish = payload => 
-({ type: types.POST_WISH, payload });
-export const patchWish = payload =>
- ({ type: types.PATCH_WISH, payload});
+let previousId = 0;
+export const postWish = (name, negId) => {
+   negId = previousId - 1;
+  const action = ({ type: types.POST_WISH, payload: { negId, name} });
+  previousId = negId;
+  return action
+}
 
+export const postWishSuccess = (name) => ({
+  type: types.POST_WISH_SUCCESS, 
+});
 
- 
+export const postWishFailure = error => ({
+  type: types.POST_WISH_FAILURE,
+  payload: { error }
+});
 
-export const receiveWishes = wishes => ({
-    type: types.RECEIVE_WISHLIST,
-    wishes
-  })
-
-export const getAllWishes = () => dispatch => {
-    server.getWishlist (wishes => {
-      dispatch(receiveWishes(wishes))
-    })
-  }
 
