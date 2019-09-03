@@ -15,18 +15,6 @@ const initialState = {
 
 export default (state= initialState , action) => {
     switch (action.type) {
-
-      // case "GET_WISHLIST":
-      //   return {
-      //       ...state, 
-      //   }
-
-      //   case "RECEIVE_WISHLIST":
-      //     return {
-      //         ...state, 
-      //         wishlist: state.wishlist
-      //     }
-
       case "POST_WISH":
         return {
             ...state, 
