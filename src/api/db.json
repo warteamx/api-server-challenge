@@ -1,5 +1,6 @@
-[{
-    "id": 1,
+{ "wishlist": [ {
+
+   "id": 1,
     "name": "wedding",
     "products": []
   },
@@ -8,4 +9,8 @@
     "name": "birthday",
     "products": []
   }
-]
+],
+"idList" : [1,2]
+} 
+
+

@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from 'react'
 import { store } from '../store'
-import { postWish, patchWish, getAllWishes, receiveWishes } from '../actions'
+import { postWish, fetchPostWish } from '../actions'
 import _ from 'lodash'
 import { connect } from "react-redux";
 
@@ -12,17 +12,10 @@ const mapStateToProps = state => {
     const [value, setValue] = useState('');
 
   let handlesubmit = () => {
-  store.dispatch(postWish(value));
+  store.dispatch(fetchPostWish(value));
 
   }
 
-  fetch('/src/api/wishlist.json')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
-  });
 
       let WishlistStoreState = JSON.stringify(store.getState())
     return (

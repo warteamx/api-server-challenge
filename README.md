@@ -24,18 +24,24 @@ const wishlists = [
 
 ## Solution 
 
-Inside the src > Components Folder , there are two components. 
+Instructions: 
+- ``` npm install ```
+- ``` npm start ```
+- ``` json-server --watch db.json --port 3004 ```
+- Inside the src > Components Folder , there are two components: Problem.js and Solution.js 
 
 UI
 - Input field with button to create a post request to add a wish to the wislist
-- Wishlist Store: A list of the wishes ready to be modified by a patch request. 
+- Wishlist Object Store: Json String representation of the store. 
 
 Problem.js
 - This component uses "useState and useEffect" Hooks to manage the state
 - If the user add wishes or modify the wishes too fast it creates errors on the id of the wishlist. 
+- (Note) I couldn´t reproduce totally the problem stated. 
 
 Solution.js
 - This component uses Redux to manage the state
+- 
 
 # TODOS: 
 - Both Components: Refactor the names of the fuctions and variables

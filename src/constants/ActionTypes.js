@@ -7,4 +7,6 @@ export const POST_WISH = "POST_WISH"
 export const POST_WISH_BEGIN   = 'POST_WISH_BEGIN';
 export const POST_WISH_SUCCESS = 'POST_WISH_SUCCESS';
 export const POST_WISH_FAILURE = 'POST_WISH_FAILURE';
+export const GET_POSITIVE_ID = 'GET_POSITIVE_ID';
+
 
