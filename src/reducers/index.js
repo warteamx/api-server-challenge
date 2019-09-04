@@ -23,18 +23,10 @@ export default (state= initialState , action) => {
         };
 
         case "POST_WISH_SUCCESS":
-          return state.wishlist.map((item, index) => {
-            // Find the item with the matching id
-            if(item.negId === action.payload.negId) {
-              // Return a new object
-              return {
-                ...item,  // copy the existing item
-                id: action.payload.id // replace the email addr
-              }
-            }
-            // Leave every other item unchanged
-            return item;
-          });
+          return {
+            ...state, 
+            idList: state.idList.concat(action.payload.name)
+        };
   
       default:
         return state;
